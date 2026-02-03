@@ -14,18 +14,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.14'
+          
       - name: Install the dependencies
         run: |
+          python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-          sudo apt install graphviz
+          sudo apt install -y graphviz
+
+      - name: Prepare content for JupyterLite
+        run: |
+          mkdir -p content
+          # Copy everything except .git and .github into content
+          rsync -av --exclude='.git' --exclude='.github' --exclude='dist' ./ content/
+      
       - name: Build the JupyterLite site
         run: |
           cp README.md content
           jupyter lite build --contents content --output-dir dist
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
