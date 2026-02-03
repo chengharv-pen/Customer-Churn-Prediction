@@ -28,13 +28,13 @@ ipympl>=0.8.2
 
 ####################################
 #
-# PYTHON LIBRARIES
+# PYTHON LIBRARIES (local development)
 #
 ####################################
 
-numpy>=2.0
-pandas>=2.2
-matplotlib>=3.9
-scikit-learn>=1.5
-seaborn>=0.13
-imbalanced-learn>=0.12
+numpy>=2.0           # Bundled via Pyodide
+pandas>=2.2          # Bundled via Pyodide
+matplotlib>=3.9      # Bundled via Pyodide
+scikit-learn>=1.5    # Bundled via Pyodide
+seaborn>=0.13        # Bundled via Pyodide
+imbalanced-learn>=0.12  # Will need micropip in JupyterLite
